@@ -59,6 +59,14 @@ class Student extends Person {
 	sprintChallenge(subject) {
 		return `${this.name} has begun sprint challenge on ${subject}`;
 	}
+	graduate() {
+		if (this.grade >= 70) {
+			return `${this.name} is graduating!`;
+		}
+		if (this.grade < 70) {
+			return `${this.name} can't graduate yet.`;
+		}
+	}
 }
 
 class ProjectManagers extends Instructor {
@@ -151,3 +159,4 @@ console.log(lily.speak());
 console.log(lily.standUp('#CS20'));
 console.log(pat.debugsCode(pete, 'Javascript'));
 console.log(olivia.gradeRandom(pete));
+console.log(pete.graduate());
