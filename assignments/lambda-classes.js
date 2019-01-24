@@ -25,6 +25,18 @@ class Instructor extends Person {
 	grade(student, subject) {
 		`${student} receives a perfect score on ${subject}`;
 	}
+	gradeRandom(Student) {
+		let randomGrade = Math.floor(Math.random() * 100) + 1;
+		Student.grade = randomGrade;
+		if (Student.grade > 100) {
+			Student.grade = 100;
+		}
+		if (Student.grade < 0) {
+			Student.grade = 0;
+		}
+
+		return `${Student.name} grade was changed by ${Instructor.name} to ${Student.grade}`;
+	}
 }
 
 class Student extends Person {
@@ -33,9 +45,13 @@ class Student extends Person {
 		this.previousBackground = attr.previousBackground;
 		this.className = attr.className;
 		this.favSubjects = attr.favSubjects;
+		this.grade = attr.grade;
 	}
 	listsSubjects() {
-		return this.favSubjects;
+		let arr = this.favSubjects;
+		arr.forEach(function(element) {
+			console.log(element);
+		});
 	}
 	PRAssignment(subject) {
 		return `${this.name} has submitted a PR for ${subject}`;
@@ -66,7 +82,8 @@ const pete = new Student({
 	gender: 'male',
 	previousBackground: 'collegue',
 	className: 'CS10',
-	favSubjects: [ 'Html', 'CSS' ]
+	favSubjects: [ 'Html', 'CSS' ],
+	grade: 75
 });
 
 const adam = new Student({
@@ -76,7 +93,8 @@ const adam = new Student({
 	gender: 'male',
 	previousBackground: 'Construction work',
 	className: 'CS20',
-	favSubjects: [ 'Javascript', 'CSS' ]
+	favSubjects: [ 'Javascript', 'CSS' ],
+	grade: 80
 });
 
 const john = new Instructor({
@@ -132,3 +150,4 @@ console.log(olivia.demo('Javascript'));
 console.log(lily.speak());
 console.log(lily.standUp('#CS20'));
 console.log(pat.debugsCode(pete, 'Javascript'));
+console.log(olivia.gradeRandom(pete));
